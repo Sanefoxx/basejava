@@ -13,7 +13,7 @@ public class ArrayStorage {
     }
 
     public void update(Resume r){
-        if (!Arrays.asList(storage).contains(r)) {
+        if (!checkIndex(r.getUuid())) {
             System.out.println("This resume not in storage to update");
         } else {
             for (int i = 0; i < size; i++) {
@@ -27,7 +27,7 @@ public class ArrayStorage {
     public void save(Resume r) {
         if (size >= storage.length) {
             System.out.println("Переполнение хранилища");
-        } else if (!Arrays.asList(storage).contains(r)) {
+        } else if (!checkIndex(r.getUuid())) {
             storage[size] = r;
             size++;
         } else {
