@@ -14,7 +14,7 @@ public class ArrayStorage {
 
     public void update(Resume r){
         if (!Arrays.asList(storage).contains(r)) {
-            System.out.println("This resume not in storage");
+            System.out.println("This resume not in storage to update");
         } else {
             for (int i = 0; i < size; i++) {
                 if (r.getUuid().equals(storage[i].getUuid())) {
@@ -31,13 +31,13 @@ public class ArrayStorage {
             storage[size] = r;
             size++;
         } else {
-            System.out.println("This resume is in storage");
+            System.out.println("This resume already in storage");
         }
     }
 
     public Resume get(String uuid) {
         if (!checkIndex(uuid)) {
-            System.out.println("This resume not in storage");
+            System.out.println("This resume not in storage to get");
             return null;
         } else {
             for (int i = 0; i < size; i++) {
@@ -51,7 +51,7 @@ public class ArrayStorage {
 
     public void delete(String uuid) {
         if (!checkIndex(uuid)) {
-            System.out.println("This resume not in storage");
+            System.out.println("This resume not in storage to delete");
         } else {
             for (int i = 0; i < size; i++) {
                 if (uuid.equals(storage[i].getUuid())) {
