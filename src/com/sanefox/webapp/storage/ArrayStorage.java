@@ -1,3 +1,7 @@
+package com.sanefox.webapp.storage;
+
+import com.sanefox.webapp.model.Resume;
+
 import java.util.Arrays;
 
 /**

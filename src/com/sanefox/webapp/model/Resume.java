@@ -1,5 +1,7 @@
+package com.sanefox.webapp.model;
+
 /**
- * com.urise.webapp.model.Resume class
+ * com.urise.webapp.model.com.sanefox.webapp.model.Resume class
  */
 public class Resume {
 

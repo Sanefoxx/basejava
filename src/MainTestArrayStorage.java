@@ -1,5 +1,8 @@
+import com.sanefox.webapp.model.Resume;
+import com.sanefox.webapp.storage.ArrayStorage;
+
 /**
- * Test for com.urise.webapp.storage.ArrayStorage
+ * Test for com.urise.webapp.storage.com.sanefox.webapp.storage.ArrayStorage
  */
 public class MainTestArrayStorage {
     static final ArrayStorage ARRAY_STORAGE = new ArrayStorage();
