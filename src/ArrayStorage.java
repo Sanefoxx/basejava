@@ -12,30 +12,53 @@ public class ArrayStorage {
         size = 0;
     }
 
-    public void save(Resume r) {
-        if (size >= storage.length){
-            System.out.println("Переполнение хранилища");
+    public void update(Resume r){
+        if (!Arrays.asList(storage).contains(r)) {
+            System.out.println("This resume not in storage");
         } else {
+            for (int i = 0; i < size; i++) {
+                if (r.getUuid().equals(storage[i].getUuid())) {
+                    storage[i] = r;
+                }
+            }
+        }
+    }
+
+    public void save(Resume r) {
+        if (size >= storage.length) {
+            System.out.println("Переполнение хранилища");
+        } else if (!Arrays.asList(storage).contains(r)) {
             storage[size] = r;
             size++;
+        } else {
+            System.out.println("This resume is in storage");
         }
     }
 
     public Resume get(String uuid) {
-        for (int i = 0; i < size; i++) {
-            if (uuid.equals(storage[i].getUuid())) {
-                return storage[i];
+        if (!checkIndex(uuid)) {
+            System.out.println("This resume not in storage");
+            return null;
+        } else {
+            for (int i = 0; i < size; i++) {
+                if (uuid.equals(storage[i].getUuid())) {
+                    return storage[i];
+                }
             }
+            return null;
         }
-        return null;
     }
 
     public void delete(String uuid) {
-        for (int i = 0; i < size; i++) {
-            if (uuid.equals(storage[i].getUuid())) {
-                size--;
-                storage[i] = storage[size];
-                storage[size] = null;
+        if (!checkIndex(uuid)) {
+            System.out.println("This resume not in storage");
+        } else {
+            for (int i = 0; i < size; i++) {
+                if (uuid.equals(storage[i].getUuid())) {
+                    size--;
+                    storage[i] = storage[size];
+                    storage[size] = null;
+                }
             }
         }
     }
@@ -46,6 +69,14 @@ public class ArrayStorage {
 
     public Resume[] getAll() {
         return Arrays.copyOf(storage, size);
+    }
+
+    public boolean checkIndex(String uuid) {
+        String[] array = new String[size];
+        for (int i = 0; i < size; i++) {
+            array[i] = storage[i].getUuid();
+        }
+        return Arrays.asList(array).contains(uuid);
     }
 
     public int size() {
