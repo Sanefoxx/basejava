@@ -13,7 +13,7 @@ public class ArrayStorage {
     }
 
     public void update(Resume r){
-        if (!checkIndex(r.getUuid())) {
+        if (checkIndex(r.getUuid()) == -1) {
             System.out.println("This resume not in storage to update");
         } else {
             for (int i = 0; i < size; i++) {
@@ -26,8 +26,8 @@ public class ArrayStorage {
 
     public void save(Resume r) {
         if (size >= storage.length) {
-            System.out.println("Переполнение хранилища");
-        } else if (!checkIndex(r.getUuid())) {
+            System.out.println("Storage overflow");
+        } else if (checkIndex(r.getUuid()) == -1) {
             storage[size] = r;
             size++;
         } else {
@@ -36,7 +36,7 @@ public class ArrayStorage {
     }
 
     public Resume get(String uuid) {
-        if (!checkIndex(uuid)) {
+        if (checkIndex(uuid) == -1) {
             System.out.println("This resume not in storage to get");
             return null;
         } else {
@@ -50,7 +50,7 @@ public class ArrayStorage {
     }
 
     public void delete(String uuid) {
-        if (!checkIndex(uuid)) {
+        if (checkIndex(uuid) == -1) {
             System.out.println("This resume not in storage to delete");
         } else {
             for (int i = 0; i < size; i++) {
@@ -71,12 +71,13 @@ public class ArrayStorage {
         return Arrays.copyOf(storage, size);
     }
 
-    public boolean checkIndex(String uuid) {
-        String[] array = new String[size];
+    public int checkIndex(String uuid) {
         for (int i = 0; i < size; i++) {
-            array[i] = storage[i].getUuid();
+            if (uuid.equals(storage[i].getUuid())) {
+                return i;
+            }
         }
-        return Arrays.asList(array).contains(uuid);
+        return -1;
     }
 
     public int size() {
