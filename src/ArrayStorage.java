@@ -12,22 +12,22 @@ public class ArrayStorage {
         size = 0;
     }
 
-    public void update(Resume r){
-        if (checkIndex(r.getUuid()) == -1) {
+    public void update(Resume r) {
+        int index = checkIndex(r.getUuid());
+
+        if (index == -1) {
             System.out.println("This resume not in storage to update");
         } else {
-            for (int i = 0; i < size; i++) {
-                if (r.getUuid().equals(storage[i].getUuid())) {
-                    storage[i] = r;
-                }
-            }
+            storage[index] = r;
         }
     }
 
     public void save(Resume r) {
+        int index = checkIndex(r.getUuid());
+
         if (size >= storage.length) {
             System.out.println("Storage overflow");
-        } else if (checkIndex(r.getUuid()) == -1) {
+        } else if (index == -1) {
             storage[size] = r;
             size++;
         } else {
@@ -36,31 +36,27 @@ public class ArrayStorage {
     }
 
     public Resume get(String uuid) {
-        if (checkIndex(uuid) == -1) {
+        int index = checkIndex(uuid);
+
+        if (index == -1) {
             System.out.println("This resume not in storage to get");
             return null;
         } else {
-            for (int i = 0; i < size; i++) {
-                if (uuid.equals(storage[i].getUuid())) {
-                    return storage[i];
-                }
-            }
-            return null;
+            return storage[index];
         }
     }
 
     public void delete(String uuid) {
-        if (checkIndex(uuid) == -1) {
+        int index = checkIndex(uuid);
+
+        if (index == -1) {
             System.out.println("This resume not in storage to delete");
         } else {
-            for (int i = 0; i < size; i++) {
-                if (uuid.equals(storage[i].getUuid())) {
-                    size--;
-                    storage[i] = storage[size];
-                    storage[size] = null;
-                }
-            }
+            size--;
+            storage[index] = storage[size];
+            storage[size] = null;
         }
+
     }
 
     /**
