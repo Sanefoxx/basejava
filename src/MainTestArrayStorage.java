@@ -1,12 +1,13 @@
 import com.sanefox.webapp.model.Resume;
 import com.sanefox.webapp.storage.ArrayStorage;
+import com.sanefox.webapp.storage.SortedArrayStorage;
 import com.sanefox.webapp.storage.Storage;
 
 /**
- * Test for com.urise.webapp.storage.com.sanefox.webapp.storage.ArrayStorage
+ * Test for com.sanefox.webapp.storage.ArrayStorage
  */
 public class MainTestArrayStorage {
-    private static final Storage ARRAY_STORAGE = new ArrayStorage();
+    private static final Storage ARRAY_STORAGE = new SortedArrayStorage();
 
     public static void main(String[] args) {
         final Resume r1 = new Resume();
@@ -30,10 +31,10 @@ public class MainTestArrayStorage {
         ARRAY_STORAGE.update(r3);
         ARRAY_STORAGE.update(r4);
 
-        ARRAY_STORAGE.delete(r3.getUuid());
+        ARRAY_STORAGE.delete(r1.getUuid());
 
         printAll();
-        ARRAY_STORAGE.delete(r1.getUuid());
+        ARRAY_STORAGE.delete(r3.getUuid());
         printAll();
         ARRAY_STORAGE.clear();
         printAll();

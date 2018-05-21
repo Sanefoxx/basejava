@@ -9,53 +9,43 @@ import java.util.Arrays;
  */
 public class ArrayStorage extends AbstractArrayStorage {
 
+    @Override
+    public int size() {
+        return super.size();
+    }
+
+    @Override
     public void clear() {
-        Arrays.fill(storage, 0, size, null);
-        size = 0;
+        super.clear();
     }
 
+    @Override
     public void update(Resume r) {
-        int index = checkIndex(r.getUuid());
-
-        if (index == -1) {
-            System.out.println("This resume not in storage to update");
-        } else {
-            storage[index] = r;
-        }
+        super.update(r);
     }
 
+    @Override
     public void save(Resume r) {
-        int index = checkIndex(r.getUuid());
-
-        if (size >= STORAGE_LIMIT) {
-            System.out.println("Storage overflow");
-        } else if (index == -1) {
-            storage[size] = r;
-            size++;
-        } else {
-            System.out.println("This resume already in storage");
-        }
+        super.save(r);
     }
 
+    @Override
+    public Resume get(String uuid) {
+        return super.get(uuid);
+    }
+
+    @Override
     public void delete(String uuid) {
-        int index = checkIndex(uuid);
-
-        if (index == -1) {
-            System.out.println("This resume not in storage to delete");
-        } else {
-            size--;
-            storage[index] = storage[size];
-            storage[size] = null;
-        }
-
+        super.delete(uuid);
     }
 
     /**
      * @return array, contains only Resumes in storage (without null)
      */
 
+    @Override
     public Resume[] getAll() {
-        return Arrays.copyOfRange(storage, 0, size);
+        return super.getAll();
     }
 
     protected int checkIndex(String uuid) {
@@ -66,5 +56,4 @@ public class ArrayStorage extends AbstractArrayStorage {
         }
         return -1;
     }
-
 }
