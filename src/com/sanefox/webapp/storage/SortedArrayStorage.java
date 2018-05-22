@@ -28,13 +28,13 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     @Override
     public void save(Resume r) {
         int index = checkIndex(r.getUuid());
-        Arrays.sort(storage, 0, size);
 
         if (size >= STORAGE_LIMIT) {
             System.out.println("Storage overflow");
         } else if (index <= -1) {
             storage[size] = r;
             size++;
+            Arrays.sort(storage, 0, size);
         } else {
             System.out.println("This resume already in storage");
         }
@@ -56,14 +56,13 @@ public class SortedArrayStorage extends AbstractArrayStorage {
 
     @Override
     public Resume[] getAll() {
-        return new Resume[0];
+        return super.getAll();
     }
 
     @Override
     protected int checkIndex(String uuid) {
         Resume searchKey = new Resume();
         searchKey.setUuid(uuid);
-        System.out.println(Arrays.binarySearch(storage, 0, size, searchKey));
         return Arrays.binarySearch(storage, 0, size, searchKey);
     }
 }
