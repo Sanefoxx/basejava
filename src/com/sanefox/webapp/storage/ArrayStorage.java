@@ -2,50 +2,19 @@ package com.sanefox.webapp.storage;
 
 import com.sanefox.webapp.model.Resume;
 
-import java.util.Arrays;
-
 /**
  * Array based storage for Resumes
  */
 public class ArrayStorage extends AbstractArrayStorage {
 
     @Override
-    public int size() {
-        return super.size();
+    protected void insertElement(Resume r, int index) {
+        storage[index] = r;
     }
 
     @Override
-    public void clear() {
-        super.clear();
-    }
-
-    @Override
-    public void update(Resume r) {
-        super.update(r);
-    }
-
-    @Override
-    public void save(Resume r) {
-        super.save(r);
-    }
-
-    @Override
-    public Resume get(String uuid) {
-        return super.get(uuid);
-    }
-
-    @Override
-    public void delete(String uuid) {
-        super.delete(uuid);
-    }
-
-    /**
-     * @return array, contains only Resumes in storage (without null)
-     */
-
-    @Override
-    public Resume[] getAll() {
-        return super.getAll();
+    protected void fillDeletedElement(int index) {
+        storage[index] = storage[size];
     }
 
     protected int checkIndex(String uuid) {

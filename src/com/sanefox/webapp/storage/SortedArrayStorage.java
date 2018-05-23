@@ -1,7 +1,6 @@
 package com.sanefox.webapp.storage;
 
 import com.sanefox.webapp.model.Resume;
-
 import java.util.Arrays;
 
 /**
@@ -10,53 +9,18 @@ import java.util.Arrays;
 public class SortedArrayStorage extends AbstractArrayStorage {
 
     @Override
-    public void clear() {
-        super.clear();
+    protected void insertElement(Resume r, int index) {
+        int insertIndex = -index - 1;
+        System.arraycopy(storage, insertIndex, storage, insertIndex + 1, size - insertIndex);
+        storage[insertIndex] = r;
     }
 
     @Override
-    public void update(Resume r) {
-        int index = checkIndex(r.getUuid());
-
-        if (index <= -1) {
-            System.out.println("This resume not in storage to update");
-        } else {
-            storage[index] = r;
+    protected void fillDeletedElement(int index) {
+        int numMoved = size - index;
+        if (numMoved > 0) {
+            System.arraycopy(storage, index + 1, storage, index, numMoved);
         }
-    }
-
-    @Override
-    public void save(Resume r) {
-        int index = checkIndex(r.getUuid());
-
-        if (size >= STORAGE_LIMIT) {
-            System.out.println("Storage overflow");
-        } else if (index <= -1) {
-            storage[size] = r;
-            size++;
-            Arrays.sort(storage, 0, size);
-        } else {
-            System.out.println("This resume already in storage");
-        }
-    }
-
-    @Override
-    public void delete(String uuid) {
-        int index = checkIndex(uuid);
-
-        if (index == -1) {
-            System.out.println("This resume not in storage to delete");
-        } else {
-            size--;
-            storage[index] = storage[size];
-            storage[size] = null;
-            Arrays.sort(storage, 0, size());
-        }
-    }
-
-    @Override
-    public Resume[] getAll() {
-        return super.getAll();
     }
 
     @Override
