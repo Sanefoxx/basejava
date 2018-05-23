@@ -1,5 +1,8 @@
 package com.sanefox.webapp.storage;
 
+import com.sanefox.webapp.exception.ExistStorageException;
+import com.sanefox.webapp.exception.NotExistStorageException;
+import com.sanefox.webapp.exception.StorageException;
 import com.sanefox.webapp.model.Resume;
 
 import java.util.Arrays;
@@ -26,7 +29,7 @@ public abstract class AbstractArrayStorage implements Storage {
         int index = checkIndex(r.getUuid());
 
         if (index < 0) {
-            System.out.println("This resume not in storage to update");
+            throw new NotExistStorageException(r.getUuid());
         } else {
             storage[index] = r;
         }
@@ -36,12 +39,12 @@ public abstract class AbstractArrayStorage implements Storage {
         int index = checkIndex(r.getUuid());
 
         if (size >= STORAGE_LIMIT) {
-            System.out.println("Storage overflow");
+            throw new StorageException("Storage Overflow", r.getUuid());
         } else if (index < 0) {
             insertElement(r, index);
             size++;
         } else {
-            System.out.println("This resume already in storage");
+            throw new ExistStorageException(r.getUuid());
         }
     }
 
@@ -49,8 +52,7 @@ public abstract class AbstractArrayStorage implements Storage {
         int index = checkIndex(uuid);
 
         if (index < 0) {
-            System.out.println("This resume not in storage to get");
-            return null;
+            throw new NotExistStorageException(uuid);
         } else {
             return storage[index];
         }
@@ -60,7 +62,7 @@ public abstract class AbstractArrayStorage implements Storage {
         int index = checkIndex(uuid);
 
         if (index < 0) {
-            System.out.println("This resume not in storage to delete");
+            throw new ExistStorageException(uuid);
         } else {
             size--;
             fillDeletedElement(index);
