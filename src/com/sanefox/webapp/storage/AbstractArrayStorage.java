@@ -62,7 +62,7 @@ public abstract class AbstractArrayStorage implements Storage {
         int index = checkIndex(uuid);
 
         if (index < 0) {
-            throw new ExistStorageException(uuid);
+            throw new NotExistStorageException(uuid);
         } else {
             size--;
             fillDeletedElement(index);
