@@ -1,3 +1,5 @@
+package com.sanefox.webapp;
+
 import com.sanefox.webapp.model.Resume;
 import com.sanefox.webapp.storage.ArrayStorage;
 
