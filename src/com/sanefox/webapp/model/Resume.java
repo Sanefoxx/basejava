@@ -6,7 +6,7 @@ import java.util.UUID;
 /**
  * com.sanefox.webapp.model.Resume class
  */
-public class Resume {
+public class Resume implements Comparable<Resume> {
 
     private final String uuid;
 
@@ -50,4 +50,9 @@ public class Resume {
         return uuid + '(' + fullName + ')';
     }
 
+    @Override
+    public int compareTo(Resume o) {
+        int cmp = fullName.compareTo(o.fullName);
+        return cmp != 0 ? cmp : uuid.compareTo(o.uuid);
+    }
 }

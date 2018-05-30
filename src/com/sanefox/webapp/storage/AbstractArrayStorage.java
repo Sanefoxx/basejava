@@ -4,6 +4,7 @@ import com.sanefox.webapp.exception.StorageException;
 import com.sanefox.webapp.model.Resume;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by aslisicin on 21.05.2018.
@@ -55,8 +56,9 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         return size;
     }
 
-    public Resume[] getAll() {
-        return Arrays.copyOfRange(storage, 0, size);
+    @Override
+    public List<Resume> doCopyAll() {
+        return Arrays.asList(Arrays.copyOfRange(storage, 0, size));
     }
 
     protected abstract void insertElement(Resume r, int index);
