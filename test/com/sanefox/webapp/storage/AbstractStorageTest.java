@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
  */
 public abstract class AbstractStorageTest {
 
-    private Storage storage;
+    protected Storage storage;
 
     private static final String UUID_1 = "uuid1";
     private static final Resume RESUME_1;
@@ -41,7 +41,7 @@ public abstract class AbstractStorageTest {
     }
 
     @Before
-    public void setUp()throws Exception {
+    public void setUp() throws Exception {
         storage.clear();
         storage.save(RESUME_1);
         storage.save(RESUME_2);
@@ -83,18 +83,6 @@ public abstract class AbstractStorageTest {
         storage.save(RESUME_1);
     }
 
-    @Test(expected = StorageException.class)
-    public void saveOverflow() throws Exception {
-        try {
-            for (int i = 4; i <= AbstractArrayStorage.STORAGE_LIMIT; i++) {
-                storage.save(new Resume());
-            }
-        } catch (StorageException e) {
-            Assert.fail();
-        }
-        storage.save(new Resume());
-    }
-
     @Test
     public void get() throws Exception {
         assertGet(RESUME_1);
@@ -128,7 +116,7 @@ public abstract class AbstractStorageTest {
         assertEquals(RESUME_3, array[2]);
     }
 
-    private void assertSize(int num){
+    private void assertSize(int num) {
         assertEquals(num, storage.size());
     }
 
