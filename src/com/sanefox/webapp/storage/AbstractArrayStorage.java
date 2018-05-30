@@ -1,7 +1,5 @@
 package com.sanefox.webapp.storage;
 
-import com.sanefox.webapp.exception.ExistStorageException;
-import com.sanefox.webapp.exception.NotExistStorageException;
 import com.sanefox.webapp.exception.StorageException;
 import com.sanefox.webapp.model.Resume;
 
@@ -16,15 +14,6 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
 
     protected Resume[] storage = new Resume[STORAGE_LIMIT];
     protected int size = 0;
-
-    public int size() {
-        return size;
-    }
-
-    public void clear() {
-        Arrays.fill(storage, 0, size, null);
-        size = 0;
-    }
 
     @Override
     protected void doUpdate(Resume r, Object index) {
@@ -52,13 +41,22 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
         fillDeletedElement((Integer) index);
     }
 
-    public Resume[] getAll() {
-        return Arrays.copyOfRange(storage, 0, size);
-    }
-
     @Override
     protected boolean isExist(Object index) {
         return (Integer) index >= 0;
+    }
+
+    public void clear() {
+        Arrays.fill(storage, 0, size, null);
+        size = 0;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public Resume[] getAll() {
+        return Arrays.copyOfRange(storage, 0, size);
     }
 
     protected abstract void insertElement(Resume r, int index);
