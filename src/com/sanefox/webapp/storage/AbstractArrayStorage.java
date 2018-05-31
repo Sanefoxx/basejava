@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by aslisicin on 21.05.2018.
  */
-public abstract class AbstractArrayStorage extends AbstractStorage {
+public abstract class AbstractArrayStorage extends AbstractStorage<Integer> {
 
     protected static final int STORAGE_LIMIT = 10000;
 
@@ -17,34 +17,34 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     protected int size = 0;
 
     @Override
-    protected void doUpdate(Resume r, Object index) {
-        storage[(Integer) index] = r;
+    protected void doUpdate(Resume r, Integer index) {
+        storage[index] = r;
     }
 
     @Override
-    protected void doSave(Resume r, Object index) {
+    protected void doSave(Resume r, Integer index) {
         if (size >= STORAGE_LIMIT) {
             throw new StorageException("Storage Overflow", r.getUuid());
-        } else if ((Integer) index < 0) {
-            insertElement(r, (Integer) index);
+        } else if (index < 0) {
+            insertElement(r, index);
             size++;
         }
     }
 
     @Override
-    protected Resume doGet(Object index) {
-        return storage[(Integer) index];
+    protected Resume doGet(Integer index) {
+        return storage[index];
     }
 
     @Override
-    protected void doDelete(Object index) {
+    protected void doDelete(Integer index) {
         size--;
-        fillDeletedElement((Integer) index);
+        fillDeletedElement(index);
     }
 
     @Override
-    protected boolean isExist(Object index) {
-        return (Integer) index >= 0;
+    protected boolean isExist(Integer index) {
+        return index >= 0;
     }
 
     public void clear() {
@@ -58,7 +58,7 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
 
     @Override
     public List<Resume> doCopyAll() {
-        return Arrays.asList(Arrays.copyOfRange(storage, 0, size));
+         return Arrays.asList(Arrays.copyOfRange(storage, 0, size));
     }
 
     protected abstract void insertElement(Resume r, int index);
