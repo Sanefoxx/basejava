@@ -1,5 +1,6 @@
 package com.sanefox.webapp.exception;
 
+
 /**
  * Created by aslisicin on 23.05.2018.
  */
@@ -8,6 +9,11 @@ public class StorageException extends RuntimeException {
 
     public StorageException(String message, String uuid) {
         super(message);
+        this.uuid = uuid;
+    }
+
+    public StorageException(String message, String uuid, Exception e) {
+        super(message, e);
         this.uuid = uuid;
     }
 
