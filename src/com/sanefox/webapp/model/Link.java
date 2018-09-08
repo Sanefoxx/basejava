@@ -1,11 +1,14 @@
 package com.sanefox.webapp.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Created by aslisicin on 04.06.2018.
  */
-public class Link {
+public class Link implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private final String name;
     private final String url;
 

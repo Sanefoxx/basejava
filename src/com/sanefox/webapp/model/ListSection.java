@@ -8,6 +8,8 @@ import java.util.Objects;
  * Created by aslisicin on 04.06.2018.
  */
 public class ListSection extends Section {
+    private static final long serialVersionUID = 1L;
+
     private final List<String> items;
 
     public ListSection(String... items) {
