@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
  * Created by aslisicin on 23.05.2018.
  */
 public abstract class AbstractStorageTest {
-    protected static final File STORAGE_DIR = new File("/Users/Sanefox/basejava/src_out_ser");
+    protected static final File STORAGE_DIR = new File("/Users/Sanefox/basejava/src_out");
 
     protected Storage storage;
 

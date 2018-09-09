@@ -5,9 +5,9 @@ import com.sanefox.webapp.model.Resume;
 
 import java.io.*;
 
-public class ObjectStreamStorage extends AbstractPathStorage {
+public class ObjectStreamPathStorage extends AbstractPathStorage {
 
-    protected ObjectStreamStorage(String directory) {
+    protected ObjectStreamPathStorage(String directory) {
         super(directory);
     }
 
