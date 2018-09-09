@@ -17,6 +17,7 @@ import java.util.UUID;
 public class Resume implements Comparable<Resume>, Serializable {
     private static final long serialVersionUID = 1L;
 
+    // Unique identifier
     private String uuid;
 
     private String fullName;
@@ -24,8 +25,7 @@ public class Resume implements Comparable<Resume>, Serializable {
     private final Map<ContactType, String> contacts = new EnumMap<>(ContactType.class);
     private final Map<SectionType, Section> sections = new EnumMap<>(SectionType.class);
 
-    public Resume(){
-
+    public Resume() {
     }
 
     public Resume(String fullName) {
@@ -41,6 +41,18 @@ public class Resume implements Comparable<Resume>, Serializable {
 
     public String getUuid() {
         return uuid;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public Map<ContactType, String> getContacts() {
+        return contacts;
+    }
+
+    public Map<SectionType, Section> getSections() {
+        return sections;
     }
 
     public String getContact(ContactType type) {
@@ -72,7 +84,6 @@ public class Resume implements Comparable<Resume>, Serializable {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(uuid, fullName, contacts, sections);
     }
 
