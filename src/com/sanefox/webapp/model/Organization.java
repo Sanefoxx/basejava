@@ -21,13 +21,13 @@ import static com.sanefox.webapp.util.DateUtil.of;
  * Created by aslisicin on 04.06.2018.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Organization implements Serializable{
+public class Organization implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Link homePage;
     private List<Position> positions = new ArrayList<>();
 
-    public Organization(){
+    public Organization() {
 
     }
 
@@ -38,6 +38,14 @@ public class Organization implements Serializable{
     public Organization(Link homePage, List<Position> positions) {
         this.homePage = homePage;
         this.positions = positions;
+    }
+
+    public Link getHomePage() {
+        return homePage;
+    }
+
+    public List<Position> getPositions() {
+        return positions;
     }
 
     @Override
@@ -61,6 +69,7 @@ public class Organization implements Serializable{
                 ", positions=" + positions +
                 '}';
     }
+
     @XmlAccessorType(XmlAccessType.FIELD)
     public static class Position implements Serializable {
         @XmlJavaTypeAdapter(LocalDateAdapter.class)
@@ -70,7 +79,7 @@ public class Organization implements Serializable{
         private String title;
         private String description;
 
-        public Position(){
+        public Position() {
 
         }
 
@@ -89,7 +98,23 @@ public class Organization implements Serializable{
             this.startDate = startDate;
             this.endDate = endDate;
             this.title = title;
-            this.description = description;
+            this.description = description == null ? "" : description;
+        }
+
+        public LocalDate getStartDate() {
+            return startDate;
+        }
+
+        public LocalDate getEndDate() {
+            return endDate;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public String getDescription() {
+            return description;
         }
 
         @Override
