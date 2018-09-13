@@ -1,5 +1,6 @@
 package com.sanefox.webapp.storage;
 
+import com.sanefox.webapp.Config;
 import com.sanefox.webapp.exception.ExistStorageException;
 import com.sanefox.webapp.exception.NotExistStorageException;
 import com.sanefox.webapp.model.*;
@@ -17,7 +18,7 @@ import static org.junit.Assert.*;
  * Created by aslisicin on 23.05.2018.
  */
 public abstract class AbstractStorageTest {
-    protected static final File STORAGE_DIR = new File("/Users/Sanefox/basejava/src_out");
+    protected static final File STORAGE_DIR = Config.get().getStorageDir();
 
     protected Storage storage;
 
