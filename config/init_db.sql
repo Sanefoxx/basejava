@@ -3,7 +3,7 @@ create table resume
   uuid      char(36) not null
     constraint resume_pkey
     primary key,
-  full_name text     not null
+  full_name varchar    not null
 );
 
 create table contact
@@ -15,8 +15,8 @@ create table contact
     constraint contact_resume_uuid_fk
     references resume
     on delete cascade,
-  type        text     not null,
-  value       text     not null
+  type        varchar     not null,
+  value       varchar     not null
 
 );
 
