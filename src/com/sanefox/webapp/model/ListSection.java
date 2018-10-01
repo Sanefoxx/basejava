@@ -12,6 +12,8 @@ public class ListSection extends Section {
 
     private List<String> items;
 
+    public static final ListSection EMPTY = new ListSection("");
+
     public ListSection(){
 
     }
