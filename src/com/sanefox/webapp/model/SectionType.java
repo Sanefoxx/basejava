@@ -4,8 +4,8 @@ package com.sanefox.webapp.model;
  * Created by aslisicin on 31.05.2018.
  */
 public enum SectionType {
-    PERSONAL("Личные качества"),
     OBJECTIVE("Позиция"),
+    PERSONAL("Личные качества"),
     ACHIEVEMENT("Достижения"),
     QUALIFICATIONS("Квалификация"),
     EXPERIENCE("Опыт работы"),
